@@ -1,6 +1,8 @@
 # kubectl apply -f hello.yaml
 # kubectl get pods -w
 # kubectl delete pod/myapp-pod
+#
+# No need to create pods anymore / Create Deployments now
 
 apiVersion: v1
 kind: Pod

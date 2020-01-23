@@ -1,0 +1,47 @@
+# Deploy without yaml file:
+#   kubectl create deploy nginx --image=nginx:1.13-alpine
+#   kubectl get deploy
+#   kubectl get replicaset
+#   kubectl get pods
+#   kubectl get deploy/nginx -o yaml
+#   kubectl delete deploy/nginx
+#
+# Deploy with this yaml file:
+#   kubectl apply -f deployment.yaml
+#   kubectl scale deploy/nginx --replicas=5
+#   kubectl get pods -w
+#   kubectl scale deploy/nginx --replicas=1
+#   kubectl get pods -w
+#
+# Rolling updates:
+#   kubectl set image deploy/nginx nginx=nginx:1.14-alpine --record   <-- needed for rollback
+#   kubectl rollout status deploy/nginx
+#   kubectl get pods
+#   kubectl describe pod/<NAME>        <-- end of output shows all Events for this pod
+#   kubectl rollout undo deploy/nginx  <-- if errors that need to be fixed
+#
+# Edit running yaml:
+#   kubectl edit deploy/nginx
+#   kubectl rollout status deploy/nginx
+
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.13-alpine
+        ports:
+        - containerPort: 80
