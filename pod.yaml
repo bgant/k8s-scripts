@@ -1,4 +1,4 @@
-# kubectl apply -f hello.yaml
+# kubectl apply -f pod.yaml
 # kubectl get pods -w
 # kubectl delete pod/myapp-pod
 #

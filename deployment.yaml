@@ -22,10 +22,11 @@
 #
 # Edit running yaml:
 #   kubectl edit deploy/nginx
+#   <change image to nginx:1.15-alpine>
 #   kubectl rollout status deploy/nginx
 
 apiVersion: apps/v1
-kind: Deployment 
+kind: Deployment   # Deployment, StatefulSet (databases), DaemonSet (one on each node), Job (run once), CronJob (scheduled job)
 metadata:
   name: nginx
   labels:
