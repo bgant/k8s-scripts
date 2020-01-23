@@ -1,3 +1,6 @@
+# kubectl apply -f hello.yaml
+# kubectl get pods -w
+
 apiVersion: v1
 kind: Pod
 metadata:
