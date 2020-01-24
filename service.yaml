@@ -29,7 +29,8 @@ spec:
   ports:
   - port: 80
     protocol: TCP
-    targetPort: 8080
+    targetPort: 80     # nginx:1.13-alpine
+    #targetPort: 8080  # monachus/rancher-demo:pink
   selector:
     app: nginx
   sessionAffinity: None

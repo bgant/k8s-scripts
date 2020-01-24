@@ -43,7 +43,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        #image: nginx:1.13-alpine
-        image: monachus/rancher-demo
+        image: nginx:1.13-alpine       # service.yaml listens on port 80
+        #image: monachus/rancher-demo  # service.yaml listens on port 8080 / x86_64 only
         ports:
         - containerPort: 80
