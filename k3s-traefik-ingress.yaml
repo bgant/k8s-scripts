@@ -16,7 +16,8 @@ spec:
         backend:
           serviceName: nginx
           servicePort: 80
-      # kubectl create deploy ...
+      #kubectl create deploy demo --image=nginx:1.15-alpine
+      #kubectl expose deploy/demo --port=80
       - path: /rancher
         backend:
           serviceName: demo
