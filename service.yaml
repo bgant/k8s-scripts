@@ -5,7 +5,7 @@
 #
 # Create command-line Service:
 #   kubectl expose deploy/nginx --type=NodePort
-#   kubectl get service   <-- nginx NodePort service on high-number port / access port with web browser
+#   kubectl get service   <-- nginx NodePort service on high-number port / http://localhost:31770
 #   kubectl delete service/nginx
 #
 #   kubectl create service nodeport nginx --node-port=31337 --tcp=80:80
@@ -24,11 +24,13 @@ metadata:
     app: nginx
   name: nginx
 spec:
+  #externalIPs:
+  #- 192.168.7.12
   ports:
   - port: 80
     protocol: TCP
-    targetPort: 80
-  selection:
+    targetPort: 8080
+  selector:
     app: nginx
   sessionAffinity: None
   type: ClusterIP

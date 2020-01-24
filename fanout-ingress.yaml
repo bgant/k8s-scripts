@@ -1,18 +1,21 @@
-# Ingress is a Layer-7 load-balancer (nginx, HAProxy, isteo, etc)
-#   kubectl apply -f ingress-single.yaml
 
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: single-ingress
+  name: fanout-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/add-base-url: "true"
 spec:
   rules:
-  - host: ingress.test  # Relies on DNS / add to /etc/hosts for testing
+  - host: ingress.test
     http:
       paths:
       - path: /
         backend:
           serviceName: nginx
+          servicePort: 80
+      - path: /rancher
+        backend:
+          serviceName: demo
           servicePort: 80
