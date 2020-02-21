@@ -1,0 +1,34 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    field.cattle.io/creatorId: user-zmzvw
+    field.cattle.io/ipAddresses: "null"
+    field.cattle.io/publicEndpoints: '[{"addresses":["192.168.7.226"],"port":80,"protocol":"TCP","serviceName":"default:iot-api-loadbalancer","allNodes":false}]'
+    field.cattle.io/targetDnsRecordIds: "null"
+    field.cattle.io/targetWorkloadIds: '["deployment:default:iot-api"]'
+  creationTimestamp: "2020-02-20T20:41:56Z"
+  labels:
+    cattle.io/creator: norman
+  name: iot-api-loadbalancer
+  namespace: default
+  resourceVersion: "11441"
+  selfLink: /api/v1/namespaces/default/services/iot-api-loadbalancer
+  uid: 78119e94-a1a7-438f-b0e8-e87e39bf3ea5
+spec:
+  clusterIP: 10.43.34.143
+  externalTrafficPolicy: Cluster
+  loadBalancerIP: 192.168.7.226
+  ports:
+  - nodePort: 30617
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    workloadID_iot-api-loadbalancer: "true"
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.7.226

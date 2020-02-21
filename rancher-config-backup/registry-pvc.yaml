@@ -1,0 +1,28 @@
+﻿apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    pv.kubernetes.io/bind-completed: "yes"
+  creationTimestamp: "2020-02-20T20:31:02Z"
+  finalizers:
+  - kubernetes.io/pvc-protection
+  name: registry
+  namespace: default
+  resourceVersion: "9420"
+  selfLink: /api/v1/namespaces/default/persistentvolumeclaims/registry
+  uid: b4bac04b-7e6b-4940-9249-dd917cac5d69
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+  storageClassName: longhorn-static
+  volumeMode: Filesystem
+  volumeName: registry
+status:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 2Gi
+  phase: Bound

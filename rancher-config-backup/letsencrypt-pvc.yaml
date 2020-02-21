@@ -1,0 +1,28 @@
+﻿apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    pv.kubernetes.io/bind-completed: "yes"
+  creationTimestamp: "2020-02-20T21:13:46Z"
+  finalizers:
+  - kubernetes.io/pvc-protection
+  name: letsencrypt
+  namespace: default
+  resourceVersion: "17109"
+  selfLink: /api/v1/namespaces/default/persistentvolumeclaims/letsencrypt
+  uid: 309658b4-ca52-4f6d-93fb-44db3abd61aa
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 209716Ki
+  storageClassName: longhorn-static
+  volumeMode: Filesystem
+  volumeName: letsencrypt
+status:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 209716Ki
+  phase: Bound

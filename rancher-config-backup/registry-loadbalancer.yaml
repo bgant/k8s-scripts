@@ -1,0 +1,35 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    field.cattle.io/creatorId: user-zmzvw
+    field.cattle.io/ipAddresses: "null"
+    field.cattle.io/publicEndpoints: '[{"addresses":["192.168.7.228"],"port":5000,"protocol":"TCP","serviceName":"default:registry-loadbalancer","allNodes":false}]'
+    field.cattle.io/targetDnsRecordIds: "null"
+    field.cattle.io/targetWorkloadIds: '["deployment:default:registry"]'
+  creationTimestamp: "2020-02-20T20:37:29Z"
+  labels:
+    cattle.io/creator: norman
+  name: registry-loadbalancer
+  namespace: default
+  resourceVersion: "10575"
+  selfLink: /api/v1/namespaces/default/services/registry-loadbalancer
+  uid: eba4e1bd-917a-4a91-b542-2728b179c4a6
+spec:
+  clusterIP: 10.43.173.60
+  externalTrafficPolicy: Cluster
+  loadBalancerIP: 192.168.7.228
+  ports:
+  - name: registry
+    nodePort: 30248
+    port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    workloadID_registry-loadbalancer: "true"
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.7.228

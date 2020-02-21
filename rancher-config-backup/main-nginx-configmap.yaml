@@ -1,0 +1,74 @@
+﻿apiVersion: v1
+data:
+  index.css: |-
+    body {
+      font-size: 17px;
+      line-height: 1.6em;
+      font-family: Tahoma, Verdana, Arial, sans-serif;
+      color: #5D6063;
+      background-color: #FFFFFF;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      min-width: 320px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .content {
+      padding-top: 42px;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+      border-bottom: 1px solid #EAEDF0;
+    }
+
+    .signature {
+      text-align: right;
+    }
+
+    a:link {
+      color: #5995DA;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #407FC7;
+    }
+    a:hover,
+    a:visited:hover {
+      color: #76AEED;
+      border-bottom: 1px solid #76AEED;
+    }
+    a:active,
+    a:visited:active {
+      color: #5995DA;
+    }
+
+    img.main {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width:80%;
+      max-width:800px;
+    }
+  index.html: "<!DOCTYPE html>\n<html lang='en'>\n<head>\n<meta charset=\"utf-8\"
+    />\n<title>Brandon Gant</title>\n<link rel=\"stylesheet\" type=\"text/css\" href=\"index.css\">\n</head>\n\n<body>\n<a
+    href='https://www.edgexfoundry.org'>\n  <img class='main' src='EdgeX_architecture.png'
+    alt='EdgeX Foundry Architecture'>\n</a>\n\n<div class='content'>\n\n<p>January
+    14, 2020</p>\n\n<p>Testing out text with various css settings. HTML defines \nthe
+    content of every web page on the Internet. By\nmarking up your raw content with
+    HTML tags, you are able to\ntell web browsers how you want different parts of
+    your content to be displayed.\n<a href='https://www.w3schools.com/html/html_intro.asp'>Creating
+    an HTML document</a> \nwith properly marked up content is the first step of\ndeveloping
+    a web page.</p>\n\n<div class='signature'>\n<p>Brandon Gant<br>\nSidney, Illinois<br>\nUSA</p>\n</div>\n</div>\n\n</body>\n</html>"
+kind: ConfigMap
+metadata:
+  annotations:
+    field.cattle.io/creatorId: user-zmzvw
+  creationTimestamp: "2020-02-20T21:35:09Z"
+  labels:
+    cattle.io/creator: norman
+  name: main-nginx-index
+  namespace: default
+  resourceVersion: "22512"
+  selfLink: /api/v1/namespaces/default/configmaps/main-nginx-index
+  uid: 40434fee-6e33-4057-99d1-2d111fa139dc
