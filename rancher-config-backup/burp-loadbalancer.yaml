@@ -1,0 +1,35 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    field.cattle.io/creatorId: user-zmzvw
+    field.cattle.io/ipAddresses: "null"
+    field.cattle.io/publicEndpoints: '[{"addresses":["192.168.7.222"],"port":4971,"protocol":"TCP","serviceName":"default:burp-loadbalancer","allNodes":false}]'
+    field.cattle.io/targetDnsRecordIds: "null"
+    field.cattle.io/targetWorkloadIds: '["deployment:default:burp"]'
+  creationTimestamp: "2020-02-22T22:26:00Z"
+  labels:
+    cattle.io/creator: norman
+  name: burp-loadbalancer
+  namespace: default
+  resourceVersion: "471695"
+  selfLink: /api/v1/namespaces/default/services/burp-loadbalancer
+  uid: 6c722800-80c2-4e9c-a59f-39831e5d44ec
+spec:
+  clusterIP: 10.43.246.80
+  externalTrafficPolicy: Cluster
+  loadBalancerIP: 192.168.7.222
+  ports:
+  - name: burp
+    nodePort: 31457
+    port: 4971
+    protocol: TCP
+    targetPort: 4971
+  selector:
+    workloadID_burp-loadbalancer: "true"
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.7.222

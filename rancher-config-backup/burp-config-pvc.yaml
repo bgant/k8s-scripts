@@ -1,0 +1,28 @@
+﻿apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    pv.kubernetes.io/bind-completed: "yes"
+  creationTimestamp: "2020-02-22T22:13:44Z"
+  finalizers:
+  - kubernetes.io/pvc-protection
+  name: burp-config
+  namespace: default
+  resourceVersion: "469449"
+  selfLink: /api/v1/namespaces/default/persistentvolumeclaims/burp-config
+  uid: 104f18f3-8cf5-4b31-a797-12e21a9e8ed4
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 512Mi
+  storageClassName: longhorn-static
+  volumeMode: Filesystem
+  volumeName: burp-config
+status:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 512Mi
+  phase: Bound
