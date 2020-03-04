@@ -1,0 +1,62 @@
+﻿apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  annotations:
+    field.cattle.io/creatorId: user-zmzvw
+  creationTimestamp: "2020-03-04T18:27:31Z"
+  labels:
+    cattle.io/creator: norman
+  name: main-nginx-certbot-renew
+  namespace: default
+  resourceVersion: "2898437"
+  selfLink: /apis/batch/v1beta1/namespaces/default/cronjobs/main-nginx-certbot-renew
+  uid: 71d17718-de10-40dc-85e2-f5588dffc0d9
+spec:
+  concurrencyPolicy: Allow
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+    spec:
+      template:
+        metadata:
+          annotations:
+            cattle.io/timestamp: "2020-03-04T18:49:43Z"
+          creationTimestamp: null
+        spec:
+          containers:
+          - command:
+            - /usr/bin/certbot
+            - renew
+            image: registry.localdomain:5000/main-nginx:2020-02-20c
+            imagePullPolicy: Always
+            name: main-nginx-certbot-renew
+            resources: {}
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities: {}
+              privileged: false
+              readOnlyRootFilesystem: false
+              runAsNonRoot: false
+            stdin: true
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            tty: true
+            volumeMounts:
+            - mountPath: /etc/letsencrypt
+              name: main-nginx-certbot-renew-pvc
+          dnsConfig: {}
+          dnsPolicy: ClusterFirst
+          restartPolicy: Never
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: main-nginx-certbot-renew-pvc
+            persistentVolumeClaim:
+              claimName: letsencrypt
+  schedule: 27 08 * * *
+  successfulJobsHistoryLimit: 3
+  suspend: false
+status:
+  lastScheduleTime: "2020-03-04T18:48:00Z"
