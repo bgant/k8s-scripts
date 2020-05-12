@@ -25,10 +25,20 @@ main-nginx:
   registry.localdomain:5000/main-nginx:2020-04-13a
   443/tcp, 80/tcp
   config map:
-    main-nginx-index  444  /var/lib/nginx/html/
-    main-nginx-config 400  /etc/nginx/conf.d/
+    main-nginx-index  444  /var/lib/nginx/html/ (read-only)
+    main-nginx-config 400  /etc/nginx/conf.d/   (read-only)
+  volume:
+    letsencrypt-data  /etc/letsencrypt (read-only)
+
+main-nginx-certbot-renew:
+  Cronjob
+  registry.localdomain:5000/main-nginx:2020-04-13a
+  cron schedule:
+    27 08 * * *
   volume:
     letsencrypt-data  /etc/letsencrypt
+  command:
+    /usr/bin/certbot renew
 
 rancher-demo:
   Deployment
