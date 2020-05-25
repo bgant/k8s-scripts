@@ -43,7 +43,7 @@ main-nginx-certbot-renew:
 rancher-demo:
   Deployment
   monachus/rancher-demo:latest
-  8080/tcp --> 80/tcp
+  8080tcp  8080  TCP  Layer-4 Load Balancer  80
   environment variables:
     COW_COLOR = purple
   node scheduling:
@@ -55,3 +55,6 @@ registry:
   5000/tcp
   volume:
     registry-data  /var/lib/registry
+  https://registry.localdomain:5000/v2/_catalog/
+  https://registry.localdomain:5000/v2/<name>/tags/list
+
