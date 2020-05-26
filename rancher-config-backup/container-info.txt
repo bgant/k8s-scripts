@@ -1,10 +1,11 @@
 burp:
   Stateful Set
-  registry.localdomain:5000/burp-2020-02-21
+  registry.localdomain:5000/burp:2020-02-21
   4971/tcp
   volume:
     burp-config  /etc/burp
     burp-data    /var/spool/burp
+  burp -a backup (linux or windows)
 
 influxdb:
   Stateful Set
@@ -19,6 +20,7 @@ iot-api:
   80/tcp
   volume:
     iot-api-data  /opt/data
+  cd /opt; chown -R nginx:nginx data/
 
 main-nginx:
   Deployment
