@@ -55,8 +55,11 @@ registry:
   Stateful Set
   registry:2.7.1
   5000/tcp
+  environment variables:
+    REGISTRY_STORAGE_DELETE_ENABLED=true
   volume:
     registry-data  /var/lib/registry
   https://registry.localdomain:5000/v2/_catalog/
   https://registry.localdomain:5000/v2/<name>/tags/list
+  https://azizunsal.github.io/blog/post/delete-images-from-private-docker-registry/
 
