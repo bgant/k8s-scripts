@@ -1,47 +1,3 @@
-burp:
-  Stateful Set
-  registry.localdomain:5000/burp:2020-02-21
-  4971/tcp
-  volume:
-    burp-config  /etc/burp
-    burp-data    /var/spool/burp
-  burp -a backup (linux or windows)
-
-influxdb:
-  Stateful Set
-  influxdb:1.7.10-alpine
-  8086/tcp
-  volume:
-    influxdb-data  /var/lib/influxdb
-
-iot-api:
-  Stateful Set
-  registry.localdomain:5000/iot-api:2020-03-27d
-  80/tcp
-  volume:
-    iot-api-data  /opt/data
-  cd /opt; chown -R nginx:nginx data/
-
-main-nginx:
-  Deployment
-  registry.localdomain:5000/main-nginx:2020-04-13a
-  443/tcp, 80/tcp
-  config map:
-    main-nginx-index  444  /var/lib/nginx/html/ (read-only)
-    main-nginx-config 400  /etc/nginx/conf.d/   (read-only)
-  volume:
-    letsencrypt-data  /etc/letsencrypt (read-only)
-
-main-nginx-certbot-renew:
-  Cronjob
-  registry.localdomain:5000/main-nginx:2020-04-13a
-  cron schedule:
-    27 08 * * *
-  volume:
-    letsencrypt-data  /etc/letsencrypt
-  command:
-    /usr/bin/certbot renew
-
 rancher-demo:
   Deployment
   monachus/rancher-demo:latest
@@ -51,15 +7,70 @@ rancher-demo:
   node scheduling:
     beta.kubernetes.io/arch = amd64
 
+influxdb:
+  Deployment
+  influxdb:1.8.1-alpine
+  8086/tcp
+  volume:
+    influxdb-data  /var/lib/influxdb
+  Health Check: TCP 8086
+  Scaling/Upgrade Policy: Rolling: stop old pods, then start new
+
 registry:
-  Stateful Set
+  Deployment
   registry:2.7.1
   5000/tcp
   environment variables:
     REGISTRY_STORAGE_DELETE_ENABLED=true
   volume:
     registry-data  /var/lib/registry
+  Health Check: TCP 5000
+  Scaling/Upgrade Policy: Rolling: stop old pods, then start new
   https://registry.localdomain:5000/v2/_catalog/
   https://registry.localdomain:5000/v2/<name>/tags/list
   https://azizunsal.github.io/blog/post/delete-images-from-private-docker-registry/
+
+main-nginx:
+  Deployment
+  registry.localdomain:5000/main-nginx:2020-06-29
+  443/tcp, 80/tcp
+  config map:
+    main-nginx-index  444  /var/lib/nginx/html/ (read-only)
+    main-nginx-config 400  /etc/nginx/conf.d/   (read-only)
+  volume:
+    letsencrypt-data  /etc/letsencrypt (read-only)
+  Health Check: TCP 80
+  Scaling/Upgrade Policy: Rolling: stop old pods, then start new
+
+main-nginx-certbot-renew:
+  Cronjob
+  registry.localdomain:5000/main-nginx:2020-06-29
+  cron schedule:
+    27 08 * * *
+  volume:
+    letsencrypt-data  /etc/letsencrypt
+  command:
+    /usr/bin/certbot renew
+
+iot-api:
+  Deployment
+  registry.localdomain:5000/iot-api:2020-06-29
+  80/tcp
+  volume:
+    iot-api-data  /opt/data
+  cd /opt; chown -R nginx:nginx data/
+
+burp:
+  Deployment
+  registry.localdomain:5000/burp:2020-06-29
+  4971/tcp
+  volume:
+    burp-config  /etc/burp
+    burp-data    /var/spool/burp
+  Scaling/Upgrade Policy: Rolling: stop old pods, then start new
+  burp -a backup (linux or windows)
+
+
+
+
 
