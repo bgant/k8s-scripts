@@ -75,3 +75,13 @@ mediawiki (Bitnami Helm App):
   mediawikiName = Brandon
   persistence.size = 2Gi
   Service Discovery IP: 192.168.7.207
+
+grafana:
+  Deployment
+  grafana/grafana:1.7.5
+  3000/tcp
+  environment variables:
+    GF_INSTALL_PLUGINS = fetzerch-sunandmoon-datasource  (Dashboard ID: 630)
+  volume:
+    grafana-data  /var/lib/grafana
+  Scaling/Upgrade Policy: Rolling: stop old pods, then start new
